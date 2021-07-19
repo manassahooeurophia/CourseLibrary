@@ -9,7 +9,7 @@ namespace PluralsightCourseLib.API.DbContexts
         public CourseLibraryContext(DbContextOptions<CourseLibraryContext> options)
            : base(options)
         {
-            
+           //check for change update
         }
       
 public DbSet<Author> Authors { get; set; }

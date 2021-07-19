@@ -11,6 +11,7 @@ namespace PluralsightCourseLib.API.Model
         [Required]
         public string Title { get; set; }
 
+       
         [MaxLength(15000)]
         public string Description { get; set; }
     }
