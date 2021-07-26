@@ -58,6 +58,9 @@ C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\P
 C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\obj\Debug\netcoreapp3.1\PluralsightCourseLib.API.MvcApplicationPartsAssemblyInfo.cache
 C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\SERGEL\DLR Project\DotNet Practice\PluralsightPractice\PluralsightCourseLib\PluralsightCourseLib.API\obj\Debug\netcoreapp3.1\PluralsightCourseLib.API.MvcApplicationPartsAssemblyInfo.cache
