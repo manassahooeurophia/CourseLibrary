@@ -49,6 +49,9 @@ namespace PluralsightCourseLib.API.Services
                 throw new ArgumentNullException(nameof(courseId));
             }
 
+            var x= _context.Courses
+              .Where(c => c.AuthorId == authorId && c.Id == courseId).FirstOrDefault();
+
             return _context.Courses
               .Where(c => c.AuthorId == authorId && c.Id == courseId).FirstOrDefault();
         }

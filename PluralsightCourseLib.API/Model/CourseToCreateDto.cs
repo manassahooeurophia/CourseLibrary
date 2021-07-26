@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace PluralsightCourseLib.API.Model
 {
-    public class CourseToCreateDto
+    public class CourseToCreateDto : CourseManipulationDto
     {
-        [Required]
-        public string Title { get; set; }
-
-       
-        [MaxLength(15000)]
-        public string Description { get; set; }
+        
     }
 }

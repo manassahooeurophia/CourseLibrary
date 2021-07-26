@@ -14,6 +14,8 @@ namespace PluralsightCourseLib.API.Profiles
         {
             CreateMap<Course, CourseDto>();
             CreateMap<CourseToCreateDto, Course>();
+            CreateMap<CourseToUpdateDto, Course>();
+            CreateMap<Course, CourseToUpdateDto>();
         }
     }
 }

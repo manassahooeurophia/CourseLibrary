@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PluralsightCourseLib.API.Entities;
 using PluralsightCourseLib.API.Model;
@@ -61,6 +62,100 @@ namespace PluralsightCourseLib.API.Controllers
             var courseToReturn = _mapper.Map<CourseDto>(course);
 
             return CreatedAtRoute("GetCourse", new { authorid = authorID, courseid = courseToReturn.Id }, courseToReturn);
+        }
+
+        [HttpPut("{courseId}")]
+        public IActionResult UpdateCourse(Guid authorId,Guid courseId,CourseToUpdateDto coursetoUpdate)
+        {
+            if (!_courselibrary.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+            var author = _courselibrary.GetAuthor(authorId);
+            var courseFromRepo = _courselibrary.GetCourse(author.Id, courseId);
+            if (courseFromRepo == null)
+            {
+                var courseToAdd=_mapper.Map<Course>(coursetoUpdate);
+                _courselibrary.AddCourse(authorId, courseToAdd);
+                _courselibrary.Save();
+
+                var courseToReturn=_mapper.Map<CourseDto>(courseToAdd);
+
+                return CreatedAtRoute("GetCourse", new { authorId, courseId = courseToReturn.Id },courseToReturn);
+            }
+
+            _mapper.Map(coursetoUpdate, courseFromRepo);
+
+            _courselibrary.UpdateCourse(courseFromRepo);
+            _courselibrary.Save();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{courseId}")]
+        public ActionResult PartiallyUpdateCourse(Guid authorId, Guid courseId,
+            JsonPatchDocument<CourseToUpdateDto> patchdocument)
+        {
+            if (!_courselibrary.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+            var author = _courselibrary.GetAuthor(authorId);
+            var courseFromRepo = _courselibrary.GetCourse(author.Id, courseId);
+            if (courseFromRepo == null)
+            {
+                // return NotFound();
+                var courseToUpdate = new CourseToUpdateDto();
+                patchdocument.ApplyTo(courseToUpdate, ModelState);
+                if (!TryValidateModel(courseToUpdate))
+                {
+                    return ValidationProblem(ModelState);
+                }
+
+                var courseToAdd = _mapper.Map<Course>(courseToUpdate);
+                courseToAdd.Id = courseId;
+
+                _courselibrary.AddCourse(authorId, courseToAdd);
+                _courselibrary.Save();
+
+                var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
+                return CreatedAtRoute("GetCourse", new { authorId, courseId }, courseToReturn);
+
+            }
+            var courseToPatch = _mapper.Map<CourseToUpdateDto>(courseFromRepo);
+            patchdocument.ApplyTo(courseToPatch,ModelState);
+
+            if (!TryValidateModel(courseToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            var mapped=_mapper.Map(courseToPatch, courseFromRepo);
+            _courselibrary.UpdateCourse(courseFromRepo);
+            _courselibrary.Save();
+
+            return NoContent();
+
+        }
+
+        [HttpDelete("{courseId}")]
+        public ActionResult DeleteCourse(Guid authorId,Guid courseId)
+        {
+            var author = _courselibrary.AuthorExists(authorId);
+            if (!_courselibrary.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+
+            var course = _courselibrary.GetCourse(authorId, courseId);
+            if(course == null)
+            {
+                return NotFound();
+            }
+            _courselibrary.DeleteCourse(course);
+            _courselibrary.Save();
+
+            return NoContent();
         }
 
     }
